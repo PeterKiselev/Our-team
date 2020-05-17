@@ -1,0 +1,75 @@
+@mixin slider-hover() {
+    @include tr;
+    &:hover,
+    &:focus,
+    &:active,
+    &--active {
+        @content;
+    }
+}
+
+.slider {
+    // outline: 1px solid red;
+    position: relative;
+    &__slide {
+        // outline: 1px solid blue;
+        min-height: 100px;
+    }
+    &__arrow {
+        // outline: 1px solid green;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        padding: 20px;
+        background: none;
+        border: none;
+        color: $primary-color;
+        font-size: 2em;
+        @include tr;
+        @include hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        
+        &--prev {
+            left: 0;
+            i {
+                margin-left: -3px;
+                display: inline-block;
+            }
+        }
+        &--next {
+            right: 0;
+            i {
+                display: inline-block;
+                margin-right: -3px;
+            }
+        }
+    }
+    &__dots {
+        // outline: 1px solid orange;
+        padding: 40px 0 ;
+        margin: 0;
+        list-style: none;
+        text-align: center;
+        li {
+            display: inline-block;
+        }
+    }
+    &__dot {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        border: $border-width solid $secondary-color;
+
+        @include tr;
+        @include slider-hover {
+            background-color: $secondary-color;
+            border-color: $primary-color;
+            cursor: pointer;
+        }
+    }
+}
+
